@@ -1,0 +1,69 @@
+<div class="point-form">
+  <h3>Параметры точки</h3>
+
+  <form (ngSubmit)="onSubmit()">
+
+    <div class="form-section">
+      <label>Координата X</label>
+      <div class="checkbox-group">
+        <div *ngFor="let x of xValues" class="checkbox-item">
+          <p-checkbox
+            [value]="x"
+            [(ngModel)]="selectedXValues"
+            [inputId]="'x' + x"
+            name="xValues"
+            (onChange)="onXChange()">
+          </p-checkbox>
+          <label [for]="'x' + x">{{ x }}</label>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Y Coordinate -->
+    <div class="form-section">
+      <label>Координата Y: <strong>{{ yValue.toFixed(2) }}</strong></label>
+      <p-slider
+        [(ngModel)]="yValue"
+        name="yValue"
+        [min]="-3"
+        [max]="5"
+        [step]="0.1"
+        styleClass="slider-full">
+      </p-slider>
+      <div class="slider-labels">
+        <span>-3</span>
+        <span>5</span>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <label>Радиус R</label>
+      <div class="checkbox-group">
+        <div *ngFor="let r of rValues" class="checkbox-item" [class.disabled]="r <= 0">
+          <p-checkbox
+            [value]="r"
+            [(ngModel)]="selectedRValues"
+            [inputId]="'r' + r"
+            name="rValues"
+            [disabled]="r <= 0"
+            (onChange)="onRChange()">
+          </p-checkbox>
+          <label [for]="'r' + r" [class.disabled]="r <= 0">{{ r }}</label>
+        </div>
+      </div>
+      <small class="p-error" *ngIf="selectedR !== null && selectedR <= 0">
+        R должен быть положительным
+      </small>
+    </div>
+
+    <button pButton
+            type="submit"
+            label="Проверить точку"
+            icon="pi pi-check"
+            class="p-button-success submit-btn"
+            [loading]="loading"
+            [disabled]="!isFormValid()">
+    </button>
+  </form>
+</div>

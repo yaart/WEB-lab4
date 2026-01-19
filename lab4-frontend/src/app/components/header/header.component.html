@@ -1,0 +1,28 @@
+<div class="header" [class.header--main]="showLogout">
+  <div class="header__info">
+    <h1 class="header__title">{{ title }}</h1>
+    <div class="header__details">
+      <span class="header__item">
+        {{ studentName }}
+      </span>
+      <span class="header__item">
+        Группа: {{ groupNumber }}
+      </span>
+      <span class="header__item">
+        Вариант: {{ variant }}
+      </span>
+    </div>
+  </div>
+
+  <div class="header__actions" *ngIf="showLogout">
+    <span class="header__user">
+      {{ currentUsername }}
+    </span>
+    <button pButton
+            type="button"
+            label="Выйти"
+            class="p-button-danger p-button-outlined"
+            (click)="logout()">
+    </button>
+  </div>
+</div>

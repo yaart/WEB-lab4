@@ -1,0 +1,136 @@
+.main-page {
+  min-height: 100vh;
+  padding: 2rem 0;
+
+  // ТОЛЬКО изображение, без градиента
+  background: url('/assets/images/main-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.main-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/assets/images/pattern.jpg');
+    opacity: 0.05; // Уменьшаем opacity паттерна
+    pointer-events: none;
+  }
+}
+
+// Панели делаем менее прозрачными для лучшей читаемости
+.panel {
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow:
+      0 15px 50px rgba(0, 0, 0, 0.12),
+      0 0 0 1px rgba(255, 255, 255, 0.6);
+  }
+
+  // Убираем градиенты из панелей
+  &--form, &--canvas, &--table {
+    background: rgba(255, 255, 255, 0.95);
+  }
+}
+
+// Tablet layout (709px - 1176px)
+@media (min-width: 709px) and (max-width: 1176px) {
+  .main-page {
+    padding: 1.5rem 0;
+
+    .container {
+      padding: 15px;
+    }
+
+    .main-content {
+      padding: 1.5rem;
+    }
+  }
+
+  .main-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+
+    .panel--form {
+      grid-column: 1 / -1;
+      order: 1;
+    }
+
+    .panel--canvas {
+      order: 2;
+    }
+
+    .panel--table {
+      order: 3;
+    }
+  }
+}
+
+@media (max-width: 708px) {
+  .main-page {
+    background: url('/assets/images/main-bg.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .main-content {
+    background: rgba(255, 255, 255, 0.98);
+  }
+
+  .panel {
+    background: rgba(255, 255, 255, 0.98);
+  }
+}
+
+@media (max-width: 400px) {
+  .main-page {
+    .container {
+      padding: 5px;
+    }
+  }
+
+  .main-content {
+    padding: 0.75rem;
+    margin: 0.25rem;
+    border-radius: 12px;
+  }
+
+  .panel {
+    padding: 1rem;
+  }
+}

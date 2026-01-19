@@ -1,0 +1,32 @@
+<div class="main-page">
+  <div class="container">
+    <app-header title="Проверка попадания точки" [showLogout]="true"></app-header>
+
+    <div class="main-content">
+      <div class="main-grid">
+        <div class="panel panel--form">
+          <app-point-form
+            [currentR]="currentR"
+            (pointSubmitted)="onPointAdded($event)"
+            (rChanged)="onRChanged($event)">
+          </app-point-form>
+        </div>
+
+        <div class="panel panel--canvas">
+          <app-canvas
+            [points]="points"
+            [currentR]="currentR"
+            (canvasClick)="onCanvasClick($event)">
+          </app-canvas>
+        </div>
+
+        <div class="panel panel--table">
+          <app-points-table
+            [points]="points"
+            (clearRequested)="onClearPoints()">
+          </app-points-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

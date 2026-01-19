@@ -1,0 +1,93 @@
+.canvas-container {
+  text-align: center;
+  position: relative;
+
+  h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: #374151;
+    font-size: 1.1rem;
+
+    i {
+      color: #667eea;
+    }
+  }
+}
+
+.graph-canvas {
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: crosshair;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  display: block;
+  margin: 0 auto;
+
+  &:hover {
+    border-color: #667eea;
+  }
+}
+
+.canvas-hint {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+
+  i {
+    margin-right: 0.25rem;
+  }
+}
+
+// Адаптивные стили для разных режимов
+@media (max-width: 1176px) {
+  .graph-canvas {
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 708px) {
+  .graph-canvas {
+    max-width: 300px;
+  }
+
+  .canvas-hint {
+    font-size: 0.8rem;
+  }
+}
+
+.coordinate-info {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  background: #f0f9ff;
+  border-radius: 4px;
+  display: inline-block;
+
+  small {
+    color: #0369a1;
+  }
+}
+
+.mouse-coordinates {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #4b5563;
+  background: #f9fafb;
+  padding: 5px 10px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.test-buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  flex-wrap: wrap;
+}

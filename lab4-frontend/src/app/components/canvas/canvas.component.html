@@ -1,0 +1,15 @@
+<div class="canvas-container">
+  <h3>Область на плоскости</h3>
+
+  <canvas #canvas
+          [width]="canvasSize"
+          [height]="canvasSize"
+          (click)="handleClick($event)"
+          (mousemove)="onMouseMove($event)"
+          class="graph-canvas">
+  </canvas>
+
+  <div class="mouse-coordinates" *ngIf="mouseX !== null && mouseY !== null">
+    Координаты: X ≈ {{mouseX | number:'1.2-2'}}, Y ≈ {{mouseY | number:'1.2-2'}}
+  </div>
+</div>

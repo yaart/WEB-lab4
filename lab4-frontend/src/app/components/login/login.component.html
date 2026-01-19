@@ -1,0 +1,64 @@
+<div class="login-page">
+  <div class="container">
+    <app-header title="Лабораторная работа №4"></app-header>
+
+    <div class="login-card">
+      <div class="login-card__header">
+        <h2>{{ isLoginMode ? 'Вход в систему' : 'Регистрация' }}</h2>
+      </div>
+
+      <div class="login-card__body">
+        <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="username">Логин</label>
+            <span class="p-input-icon-left full-width">
+              <input id="username"
+                     type="text"
+                     pInputText
+                     formControlName="username"
+                     placeholder="Введите логин"
+                     class="full-width" />
+            </span>
+            <small class="p-error"
+                   *ngIf="authForm.get('username')?.invalid && authForm.get('username')?.touched">
+              Логин должен содержать от 3 до 50 символов
+            </small>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Пароль</label>
+            <p-password id="password"
+                        formControlName="password"
+                        placeholder="Введите пароль"
+                        [toggleMask]="true"
+                        [feedback]="!isLoginMode"
+                        styleClass="full-width"
+                        inputStyleClass="full-width">
+            </p-password>
+            <small class="p-error"
+                   *ngIf="authForm.get('password')?.invalid && authForm.get('password')?.touched">
+              Пароль должен содержать от 4 до 100 символов
+            </small>
+          </div>
+
+          <div class="form-actions">
+            <button pButton
+                    type="submit"
+                    [label]="isLoginMode ? 'Войти' : 'Зарегистрироваться'"
+                    [loading]="loading"
+                    [disabled]="authForm.invalid"
+                    class="p-button-lg full-width">
+            </button>
+
+            <button pButton
+                    type="button"
+                    [label]="isLoginMode ? 'Создать аккаунт' : 'Уже есть аккаунт?'"
+                    class="p-button-text p-button-secondary full-width"
+                    (click)="toggleMode()">
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
