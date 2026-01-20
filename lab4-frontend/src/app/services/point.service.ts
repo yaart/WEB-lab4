@@ -3,13 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import {Observable, BehaviorSubject, tap, throwError} from 'rxjs';
 import { Point, PointRequest } from '../models/point.model';
 import {catchError} from "rxjs/operators";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PointService {
-  private readonly API_URL = 'http://localhost:8080/api/points';
-
+  private readonly API_URL = environment.apiUrl + '/points';
   private pointsSubject = new BehaviorSubject<Point[]>([]);
   public points$ = this.pointsSubject.asObservable();
 

@@ -1,5 +1,7 @@
 server:
-  port: 8080
+  port: 13100
+  servlet:
+    context-path: /
 
 spring:
   datasource:
@@ -7,17 +9,40 @@ spring:
     username:
     password:
     driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
 
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
+        jdbc:
+          batch_size: 20
+        order_inserts: true
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+logging:
+  level:
+    yaart.s468198.labe4: DEBUG
+    org.springframework.security: INFO
+  file:
+    name: logs/lab4.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 
 app:
   jwt:
-    secret: mySecretKeyForJWTTokenGenerationMustBeAtLeast256BitsLong123456789
-    expiration: 86400000
+    secret: "your-secret-key-for-jwt-token-generation-must-be-at-least-256-bits-long-123456789"
+    expiration: 86400000 # 24 hours
+
+# Отключаем H2 в production
+spring.h2.console.enabled: false
